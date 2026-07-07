@@ -7,8 +7,8 @@
     <style>
         /* CSS Variables for MEC Networks Theme */
         :root {
-            --mec-blue: #0A2240; /* Deep Navy Blue */
-            --mec-orange: #F26522; /* Vibrant Orange */
+            --mec-blue: #0A2240; 
+            --mec-orange: #F26522; 
             --light-bg: #F4F7F6;
             --text-dark: #333333;
             --white: #FFFFFF;
@@ -16,7 +16,7 @@
 
         /* Base & Smooth Scrolling */
         html {
-            scroll-behavior: smooth; /* Native smooth scroll for the tabs */
+            scroll-behavior: smooth; 
         }
 
         body {
@@ -64,21 +64,15 @@
         /* Sections */
         section {
             min-height: 100vh;
-            padding: 100px 10% 50px 10%; /* Top padding accounts for fixed nav */
+            padding: 100px 10% 50px 10%; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* Alternating Section Backgrounds */
-        section:nth-child(even) {
-            background-color: var(--white);
-        }
-
-        section:nth-child(odd) {
-            background-color: var(--light-bg);
-        }
+        section:nth-child(even) { background-color: var(--white); }
+        section:nth-child(odd) { background-color: var(--light-bg); }
 
         h1, h2 {
             color: var(--mec-blue);
@@ -105,27 +99,63 @@
             border-top: 5px solid var(--mec-orange);
         }
 
-        /* File Embed Containers */
-        .file-container {
+        /* --- Interactive Photo Gallery Styles --- */
+        .gallery-container {
             width: 100%;
             max-width: 900px;
-            height: 500px;
+            margin-top: 20px;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .main-image-wrapper {
+            width: 100%;
+            height: 450px;
+            margin-bottom: 15px;
             background-color: #E2E8F0;
-            border: 2px dashed var(--mec-blue);
             border-radius: 8px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
-            color: #64748B;
-            font-weight: bold;
         }
 
-        iframe {
+        .main-image-wrapper img {
             width: 100%;
             height: 100%;
-            border: none;
-            border-radius: 8px;
+            object-fit: cover; /* Ensures the image fills the box without distorting */
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .thumb {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            opacity: 0.6;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .thumb:hover {
+            opacity: 0.9;
+        }
+
+        .thumb.active {
+            opacity: 1;
+            border-color: var(--mec-orange);
+            transform: scale(1.05);
         }
 
         /* Scroll Animations */
@@ -134,7 +164,6 @@
             transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
         .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
@@ -152,7 +181,6 @@
 </head>
 <body>
 
-    <!-- Tabs / Navigation -->
     <nav>
         <ul>
             <li><a href="#profile">My Profile</a></li>
@@ -170,7 +198,7 @@
             <p><strong>Name:</strong> Jaydie</p>
             <p><strong>Degree:</strong> Computer Engineering (CpE)</p>
             <p><strong>University:</strong> Polytechnic University of the Philippines (PUP)</p>
-            <p><strong>Summary:</strong> Write your personal summary here. Detail your academic background, your goals for this On-the-Job Training, and the core technical skills you are bringing into the workplace. Highlight your readiness to apply classroom theories to real-world industry challenges.</p>
+            <p><strong>Summary:</strong> Write your personal summary here. Detail your academic background, your goals for this On-the-Job Training, and the core technical skills you are bringing into the workplace.</p>
         </div>
     </section>
 
@@ -178,41 +206,59 @@
     <section id="company">
         <div class="content-card animate-on-scroll">
             <h2>MEC Networks Corporation</h2>
-            <p><strong>Company Summary:</strong> MEC Networks Corporation is a premier ICT Distributor in the Philippines, providing innovative technological solutions and world-class networking products. (Add more details about the specific department you are assigned to, the company's mission/vision, and how your role aligns with their operations).</p>
+            <p><strong>Company Summary:</strong> MEC Networks Corporation is a premier ICT Distributor in the Philippines, providing innovative technological solutions and world-class networking products.</p>
         </div>
     </section>
 
     <!-- 3. Before OJT -->
     <section id="before-ojt">
         <h2 class="animate-on-scroll">Before OJT</h2>
-        <p class="animate-on-scroll">Documents, requirements, and preparatory papers submitted prior to the commencement of the training.</p>
+        <p class="animate-on-scroll">Preparatory papers and requirements submitted prior to training.</p>
         
-        <!-- Replace the src inside the iframe with the link to your actual file (e.g., a PDF path or Google Drive embed link) -->
-        <div class="file-container animate-on-scroll">
-            <!-- <iframe src="path/to/your/before-ojt-document.pdf"></iframe> -->
-            [Embed "Before OJT" PDF/File Here]
+        <div class="gallery-container animate-on-scroll">
+            <div class="main-image-wrapper">
+                <img id="main-img-before" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=Before+OJT+Document+1" alt="Before OJT Document">
+            </div>
+            <div class="thumbnail-row">
+                <!-- Replace the src links below with your actual image file names (e.g. src="doc1.jpg") -->
+                <img class="thumb active" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=Before+OJT+Document+1" onclick="swapImage('main-img-before', this.src, this)">
+                <img class="thumb" src="https://via.placeholder.com/900x450/F26522/FFFFFF?text=Before+OJT+Document+2" onclick="swapImage('main-img-before', this.src, this)">
+                <img class="thumb" src="https://via.placeholder.com/900x450/333333/FFFFFF?text=Before+OJT+Document+3" onclick="swapImage('main-img-before', this.src, this)">
+            </div>
         </div>
     </section>
 
     <!-- 4. During OJT -->
     <section id="during-ojt">
         <h2 class="animate-on-scroll">During OJT</h2>
-        <p class="animate-on-scroll">Weekly reports, task outputs, and progressive assessments compiled during the training period.</p>
+        <p class="animate-on-scroll">Weekly reports and progressive assessments compiled during the training.</p>
         
-        <div class="file-container animate-on-scroll">
-            <!-- <iframe src="path/to/your/during-ojt-document.pdf"></iframe> -->
-            [Embed "During OJT" PDF/File Here]
+        <div class="gallery-container animate-on-scroll">
+            <div class="main-image-wrapper">
+                <img id="main-img-during" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=During+OJT+Document+1" alt="During OJT Document">
+            </div>
+            <div class="thumbnail-row">
+                <img class="thumb active" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=During+OJT+Document+1" onclick="swapImage('main-img-during', this.src, this)">
+                <img class="thumb" src="https://via.placeholder.com/900x450/F26522/FFFFFF?text=During+OJT+Document+2" onclick="swapImage('main-img-during', this.src, this)">
+                <img class="thumb" src="https://via.placeholder.com/900x450/333333/FFFFFF?text=During+OJT+Document+3" onclick="swapImage('main-img-during', this.src, this)">
+                <img class="thumb" src="https://via.placeholder.com/900x450/64748B/FFFFFF?text=During+OJT+Document+4" onclick="swapImage('main-img-during', this.src, this)">
+            </div>
         </div>
     </section>
 
     <!-- 5. After OJT -->
     <section id="after-ojt">
         <h2 class="animate-on-scroll">After OJT</h2>
-        <p class="animate-on-scroll">Final evaluations, completion certificates, and post-training reflections.</p>
+        <p class="animate-on-scroll">Final evaluations and completion certificates.</p>
         
-        <div class="file-container animate-on-scroll">
-            <!-- <iframe src="path/to/your/after-ojt-document.pdf"></iframe> -->
-            [Embed "After OJT" PDF/File Here]
+        <div class="gallery-container animate-on-scroll">
+            <div class="main-image-wrapper">
+                <img id="main-img-after" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=After+OJT+Document+1" alt="After OJT Document">
+            </div>
+            <div class="thumbnail-row">
+                <img class="thumb active" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=After+OJT+Document+1" onclick="swapImage('main-img-after', this.src, this)">
+                <img class="thumb" src="https://via.placeholder.com/900x450/F26522/FFFFFF?text=After+OJT+Document+2" onclick="swapImage('main-img-after', this.src, this)">
+            </div>
         </div>
     </section>
 
@@ -220,20 +266,34 @@
         <p>&copy; 2026 Jaydie | OJT Progression Portfolio</p>
     </footer>
 
-    <!-- JavaScript for Scroll Animations -->
+    <!-- JavaScript -->
     <script>
+        // Image Swapping Logic
+        function swapImage(mainImageId, newSrc, clickedThumbnail) {
+            // Update the main image source
+            document.getElementById(mainImageId).src = newSrc;
+            
+            // Remove 'active' class from all thumbnails in that specific row
+            const thumbnails = clickedThumbnail.parentElement.querySelectorAll('.thumb');
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            
+            // Add 'active' class to the clicked thumbnail
+            clickedThumbnail.classList.add('active');
+        }
+
+        // Scroll Animations Logic
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 // Triggers when 15% of the element is visible
+                threshold: 0.15 
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stops observing once animated
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);
