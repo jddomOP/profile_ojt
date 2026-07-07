@@ -1,1 +1,246 @@
-# profile_ojt
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJT Progression Portfolio</title>
+    <style>
+        /* CSS Variables for MEC Networks Theme */
+        :root {
+            --mec-blue: #0A2240; /* Deep Navy Blue */
+            --mec-orange: #F26522; /* Vibrant Orange */
+            --light-bg: #F4F7F6;
+            --text-dark: #333333;
+            --white: #FFFFFF;
+        }
+
+        /* Base & Smooth Scrolling */
+        html {
+            scroll-behavior: smooth; /* Native smooth scroll for the tabs */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--mec-blue);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--mec-orange);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 10% 50px 10%; /* Top padding accounts for fixed nav */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Alternating Section Backgrounds */
+        section:nth-child(even) {
+            background-color: var(--white);
+        }
+
+        section:nth-child(odd) {
+            background-color: var(--light-bg);
+        }
+
+        h1, h2 {
+            color: var(--mec-blue);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--mec-orange);
+            padding-bottom: 10px;
+        }
+
+        p {
+            max-width: 800px;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        /* Profile & Company Cards */
+        .content-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            max-width: 800px;
+            width: 100%;
+            border-top: 5px solid var(--mec-orange);
+        }
+
+        /* File Embed Containers */
+        .file-container {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            background-color: #E2E8F0;
+            border: 2px dashed var(--mec-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #64748B;
+            font-weight: bold;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--mec-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tabs / Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#profile">My Profile</a></li>
+            <li><a href="#company">Company</a></li>
+            <li><a href="#before-ojt">Before OJT</a></li>
+            <li><a href="#during-ojt">During OJT</a></li>
+            <li><a href="#after-ojt">After OJT</a></li>
+        </ul>
+    </nav>
+
+    <!-- 1. My Profile -->
+    <section id="profile">
+        <div class="content-card animate-on-scroll">
+            <h2>My Profile</h2>
+            <p><strong>Name:</strong> Jaydie</p>
+            <p><strong>Degree:</strong> Computer Engineering (CpE)</p>
+            <p><strong>University:</strong> Polytechnic University of the Philippines (PUP)</p>
+            <p><strong>Summary:</strong> Write your personal summary here. Detail your academic background, your goals for this On-the-Job Training, and the core technical skills you are bringing into the workplace. Highlight your readiness to apply classroom theories to real-world industry challenges.</p>
+        </div>
+    </section>
+
+    <!-- 2. Company -->
+    <section id="company">
+        <div class="content-card animate-on-scroll">
+            <h2>MEC Networks Corporation</h2>
+            <p><strong>Company Summary:</strong> MEC Networks Corporation is a premier ICT Distributor in the Philippines, providing innovative technological solutions and world-class networking products. (Add more details about the specific department you are assigned to, the company's mission/vision, and how your role aligns with their operations).</p>
+        </div>
+    </section>
+
+    <!-- 3. Before OJT -->
+    <section id="before-ojt">
+        <h2 class="animate-on-scroll">Before OJT</h2>
+        <p class="animate-on-scroll">Documents, requirements, and preparatory papers submitted prior to the commencement of the training.</p>
+        
+        <!-- Replace the src inside the iframe with the link to your actual file (e.g., a PDF path or Google Drive embed link) -->
+        <div class="file-container animate-on-scroll">
+            <!-- <iframe src="path/to/your/before-ojt-document.pdf"></iframe> -->
+            [Embed "Before OJT" PDF/File Here]
+        </div>
+    </section>
+
+    <!-- 4. During OJT -->
+    <section id="during-ojt">
+        <h2 class="animate-on-scroll">During OJT</h2>
+        <p class="animate-on-scroll">Weekly reports, task outputs, and progressive assessments compiled during the training period.</p>
+        
+        <div class="file-container animate-on-scroll">
+            <!-- <iframe src="path/to/your/during-ojt-document.pdf"></iframe> -->
+            [Embed "During OJT" PDF/File Here]
+        </div>
+    </section>
+
+    <!-- 5. After OJT -->
+    <section id="after-ojt">
+        <h2 class="animate-on-scroll">After OJT</h2>
+        <p class="animate-on-scroll">Final evaluations, completion certificates, and post-training reflections.</p>
+        
+        <div class="file-container animate-on-scroll">
+            <!-- <iframe src="path/to/your/after-ojt-document.pdf"></iframe> -->
+            [Embed "After OJT" PDF/File Here]
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jaydie | OJT Progression Portfolio</p>
+    </footer>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stops observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
