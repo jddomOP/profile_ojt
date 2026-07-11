@@ -13,6 +13,10 @@
             --text-dark: #333333;
             --white: #FFFFFF;
             --gray-border: #E2E8F0;
+            
+            /* Dynamic variables for the scroll-fade effect */
+            --profile-bg-opacity: 1;
+            --company-bg-opacity: 1;
         }
 
         html {
@@ -71,28 +75,40 @@
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
+            position: relative; /* Required for the background layers to stay contained */
+            z-index: 1;
         }
 
         section:nth-child(even) { background-color: var(--white); }
         section:nth-child(odd) { background-color: var(--light-bg); }
 
-        /* --- Custom Background Logos --- */
-        #profile {
-            background-color: var(--light-bg);
-            background-image: url('documents/puppylon.jpg');
+        /* --- Fullscreen Wallpapers with Fade Opacity --- */
+        #profile::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('documents/pup_logo.png');
+            background-size: cover; /* Makes the image a full wallpaper */
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 35%; /* Adjust this percentage to make the logo bigger or smaller */
-            background-attachment: fixed; /* Creates a neat scrolling effect */
+            background-attachment: fixed;
+            z-index: -1; /* Keeps the image behind your content */
+            opacity: var(--profile-bg-opacity);
+            transition: opacity 0.1s ease-out;
         }
 
-        #company {
-            background-color: var(--white);
-            background-image: url('photos/mec logo.jpg');
+        #company::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('documents/mec_logo.png');
+            background-size: cover; /* Makes the image a full wallpaper */
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 35%;
             background-attachment: fixed;
+            z-index: -1; 
+            opacity: var(--company-bg-opacity);
+            transition: opacity 0.1s ease-out;
         }
 
         h2 {
@@ -118,8 +134,8 @@
 
         /* Profile & Company Cards with Glassmorphism (Transparent Blur) */
         .content-card {
-            background: rgba(255, 255, 255, 0.88); /* 88% opaque white so background shows through */
-            backdrop-filter: blur(8px); /* Blurs the background logo behind the card text */
+            background: rgba(255, 255, 255, 0.90); /* Transparent enough to see the wallpaper */
+            backdrop-filter: blur(8px); /* Blurs the wallpaper behind the text */
             -webkit-backdrop-filter: blur(8px);
             padding: 40px;
             border-radius: 10px;
@@ -129,17 +145,13 @@
             border-top: 5px solid var(--mec-orange);
         }
 
-        .content-card h2 {
-            align-self: auto;
-        }
-
         /* --- Dashboard Layout --- */
         .dashboard {
             display: flex;
             gap: 30px;
             width: 100%;
             max-width: 1100px;
-            height: 600px; /* Fixed height so scrolling happens inside the menu */
+            height: 600px; 
             margin: 0 auto;
         }
 
@@ -149,7 +161,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            overflow-y: auto; /* Adds scrollbar if list is too long */
+            overflow-y: auto; 
             padding-right: 10px;
             background: var(--white);
             padding: 15px;
@@ -332,7 +344,6 @@
         
         <div class="dashboard animate-on-scroll">
             <div class="label-menu">
-                <!-- Update the paths inside documents/ to match your exact PDF file names -->
                 <div class="doc-label active" onclick="swapDoc('view-before', 'documents/cover_page.pdf', this)">Cover Page</div>
                 <div class="doc-label" onclick="swapDoc('view-before', 'documents/approval_sheet.pdf', this)">Approval Sheet</div>
                 <div class="doc-label" onclick="swapDoc('view-before', 'documents/company_profile.pdf', this)">Company Profile</div>
@@ -366,7 +377,6 @@
                         Weekly Docu <span>▼</span>
                     </div>
                     <div class="accordion-content open">
-                        <!-- Update these to your real PDF paths -->
                         <div class="sub-label active" onclick="swapDoc('view-during', 'documents/Week-1-Docu.docx.pdf', this)">Week 1</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_2.pdf', this)">Week 2</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_3.pdf', this)">Week 3</div>
@@ -386,7 +396,6 @@
                         Weekly Report <span>▼</span>
                     </div>
                     <div class="accordion-content">
-                        <!-- Update these to your real PDF paths -->
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/Week-1-Report.docx.pdf', this)">Week 1</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_2.pdf', this)">Week 2</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_3.pdf', this)">Week 3</div>
@@ -414,7 +423,6 @@
         
         <div class="dashboard animate-on-scroll">
             <div class="label-menu">
-                <!-- Update these to your real PDF paths -->
                 <div class="doc-label active" onclick="swapDoc('view-after', 'documents/eval_supervisor.pdf', this)">Evaluation for Supervisor</div>
                 <div class="doc-label" onclick="swapDoc('view-after', 'documents/performance_eval.pdf', this)">Performance Eval Grading</div>
             </div>
@@ -430,6 +438,29 @@
 
     <!-- JavaScript -->
     <script>
+        // Wallpaper Fade-Out on Scroll Logic
+        window.addEventListener('scroll', function() {
+            const scrollPos = window.scrollY;
+            
+            // Fades out the Profile background as you scroll down past it
+            const profileSec = document.getElementById('profile');
+            const profileHeight = profileSec.offsetHeight;
+            let profileFade = 1 - (scrollPos / (profileHeight * 0.8)); // 0.8 makes it fade completely slightly before leaving the screen
+            document.documentElement.style.setProperty('--profile-bg-opacity', Math.max(0, profileFade));
+            
+            // Fades out the Company background as you scroll past it
+            const companySec = document.getElementById('company');
+            const compTop = companySec.offsetTop;
+            const compHeight = companySec.offsetHeight;
+            
+            let companyFade = 1;
+            if (scrollPos > compTop) {
+                // Starts fading once the user begins scrolling down past the top of the company section
+                companyFade = 1 - ((scrollPos - compTop) / (compHeight * 0.8));
+            }
+            document.documentElement.style.setProperty('--company-bg-opacity', Math.max(0, companyFade));
+        });
+
         // Accordion Toggle Logic
         function toggleAccordion(toggleElement) {
             toggleElement.classList.toggle('open');
@@ -439,10 +470,8 @@
 
         // Document Swapping Logic for iFrames
         function swapDoc(viewerId, newDocSrc, clickedLabel) {
-            // Update the iframe source
             document.getElementById(viewerId).src = newDocSrc;
             
-            // Manage active styles within this specific menu panel
             const menu = clickedLabel.closest('.label-menu');
             const allLabels = menu.querySelectorAll('.doc-label, .sub-label');
             
@@ -450,7 +479,7 @@
             clickedLabel.classList.add('active');
         }
 
-        // Scroll Intersection Animation Setup
+        // Content Animation Setup
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
