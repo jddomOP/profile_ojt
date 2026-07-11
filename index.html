@@ -171,7 +171,7 @@
         .viewer-panel img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Prevents stretching, maintains document aspect ratio */
+            object-fit: contain; 
             background-color: #555;
             transition: opacity 0.3s ease;
         }
@@ -205,7 +205,6 @@
             <li><a href="#before-ojt">Before OJT</a></li>
             <li><a href="#during-ojt">During OJT</a></li>
             <li><a href="#after-ojt">After OJT</a></li>
-            <li><a href="#others">Others</a></li>
         </ul>
     </nav>
 
@@ -235,7 +234,6 @@
         
         <div class="dashboard animate-on-scroll">
             <div class="label-menu">
-                <!-- Replace 'src' values with your image names (e.g., 'images/cover_page.jpg') -->
                 <div class="doc-label active" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Cover+Page', this)">Cover Page</div>
                 <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Approval+Sheet', this)">Approval Sheet</div>
                 <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Company+Profile', this)">Company Profile</div>
@@ -283,22 +281,6 @@
             </div>
             <div class="viewer-panel">
                 <img id="view-after" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Evaluation+for+Supervisor" alt="Document Viewer">
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Others -->
-    <section id="others">
-        <h2 class="animate-on-scroll">Others</h2>
-        <p class="section-desc animate-on-scroll">Additional reference samples and global digital repositories.</p>
-        
-        <div class="dashboard animate-on-scroll">
-            <div class="label-menu">
-                <div class="doc-label active" onclick="swapDoc('view-others', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=CV+Sample', this)">CV Sample</div>
-                <div class="doc-label" onclick="swapDoc('view-others', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=OJT+GDrive+Screenshot', this)">OJT GDrive</div>
-            </div>
-            <div class="viewer-panel">
-                <img id="view-others" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=CV+Sample" alt="Document Viewer">
             </div>
         </div>
     </section>
