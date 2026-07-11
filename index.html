@@ -76,6 +76,25 @@
         section:nth-child(even) { background-color: var(--white); }
         section:nth-child(odd) { background-color: var(--light-bg); }
 
+        /* --- Custom Background Logos --- */
+        #profile {
+            background-color: var(--light-bg);
+            background-image: url('documents/pup_logo.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 35%; /* Adjust this percentage to make the logo bigger or smaller */
+            background-attachment: fixed; /* Creates a neat scrolling effect */
+        }
+
+        #company {
+            background-color: var(--white);
+            background-image: url('documents/mec_logo.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 35%;
+            background-attachment: fixed;
+        }
+
         h2 {
             color: var(--mec-blue);
             margin-bottom: 20px;
@@ -97,23 +116,21 @@
             color: #555;
         }
 
-        /* Profile & Company Cards */
+        /* Profile & Company Cards with Glassmorphism (Transparent Blur) */
         .content-card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.88); /* 88% opaque white so background shows through */
+            backdrop-filter: blur(8px); /* Blurs the background logo behind the card text */
+            -webkit-backdrop-filter: blur(8px);
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             max-width: 800px;
             width: 100%;
             border-top: 5px solid var(--mec-orange);
         }
 
-        /* Section Logos */
-        .section-logo {
-            max-width: 120px;
-            height: auto;
-            display: block;
-            margin: 0 auto 20px auto; 
+        .content-card h2 {
+            align-self: auto;
         }
 
         /* --- Dashboard Layout --- */
@@ -292,8 +309,6 @@
     <!-- 1. My Profile -->
     <section id="profile">
         <div class="content-card animate-on-scroll">
-            <img src="documents/pup_logo.png" alt="PUP Logo" class="section-logo">
-            
             <h2>My Profile</h2>
             <p><strong>Name:</strong> Jaydie</p>
             <p><strong>Degree:</strong> Computer Engineering (CpE)</p>
@@ -305,8 +320,6 @@
     <!-- 2. Company -->
     <section id="company">
         <div class="content-card animate-on-scroll">
-            <img src="documents/mec_logo.png" alt="MEC Networks Logo" class="section-logo">
-            
             <h2>MEC Networks Corporation</h2>
             <p><strong>Company Summary:</strong> MEC Networks Corporation is a premier ICT Distributor in the Philippines, providing innovative technological solutions and world-class networking products.</p>
         </div>
