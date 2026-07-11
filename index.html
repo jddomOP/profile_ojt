@@ -114,7 +114,7 @@
             gap: 30px;
             width: 100%;
             max-width: 1100px;
-            height: 600px;
+            height: 600px; /* Fixed height so scrolling happens inside the menu */
             margin: 0 auto;
         }
 
@@ -124,13 +124,29 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            overflow-y: auto;
+            overflow-y: auto; /* Adds scrollbar if list is too long */
             padding-right: 10px;
             background: var(--white);
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.04);
             border-left: 4px solid var(--mec-blue);
+        }
+
+        /* Custom Scrollbar for the menu */
+        .label-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+        .label-menu::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
+        }
+        .label-menu::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .label-menu::-webkit-scrollbar-thumb:hover {
+            background: var(--mec-blue); 
         }
 
         .doc-label {
@@ -144,6 +160,7 @@
             transition: all 0.25s ease;
             border: 1px solid var(--gray-border);
             text-align: left;
+            user-select: none;
         }
 
         .doc-label:hover {
@@ -156,6 +173,63 @@
             color: var(--white);
             border-color: var(--mec-orange);
             box-shadow: 0 4px 10px rgba(242, 101, 34, 0.3);
+        }
+
+        /* --- Accordion (Sub-tabs) Styles --- */
+        .accordion-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .accordion-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-toggle span {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-toggle.open span {
+            transform: rotate(180deg); /* Flips the arrow */
+        }
+
+        .accordion-content {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding-left: 15px; /* Indents the sub-tabs */
+            margin-bottom: 10px;
+        }
+
+        .accordion-content.open {
+            display: flex;
+        }
+
+        .sub-label {
+            background-color: #f8fafc;
+            color: var(--mec-blue);
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid var(--gray-border);
+        }
+
+        .sub-label:hover {
+            background-color: #E2E8F0;
+            padding-left: 20px;
+        }
+
+        .sub-label.active {
+            background-color: var(--mec-orange);
+            color: var(--white);
+            border-color: var(--mec-orange);
         }
 
         /* Right Side: Document Viewer */
@@ -256,15 +330,55 @@
     <!-- 4. During OJT -->
     <section id="during-ojt">
         <h2 class="animate-on-scroll">During OJT</h2>
-        <p class="section-desc animate-on-scroll">Select a document label to track progress documentations throughout the training period.</p>
+        <p class="section-desc animate-on-scroll">Select a folder to expand and view the weekly progress documentation and reports.</p>
         
         <div class="dashboard animate-on-scroll">
             <div class="label-menu">
-                <div class="doc-label active" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Weekly+Docu', this)">Weekly Docu</div>
-                <div class="doc-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Weekly+Report', this)">Weekly Report</div>
+                
+                <!-- Weekly Docu Accordion -->
+                <div class="accordion-group">
+                    <!-- Added 'open' class by default so the user sees the weeks immediately -->
+                    <div class="doc-label accordion-toggle open" onclick="toggleAccordion(this)">
+                        Weekly Docu <span>▼</span>
+                    </div>
+                    <div class="accordion-content open">
+                        <!-- Replace links with your week 1-10 docu image paths -->
+                        <div class="sub-label active" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+1', this)">Week 1</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+2', this)">Week 2</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+3', this)">Week 3</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+4', this)">Week 4</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+5', this)">Week 5</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+6', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+7', this)">Week 7</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+8', this)">Week 8</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+9', this)">Week 9</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+10', this)">Week 10</div>
+                    </div>
+                </div>
+
+                <!-- Weekly Report Accordion -->
+                <div class="accordion-group">
+                    <div class="doc-label accordion-toggle" onclick="toggleAccordion(this)">
+                        Weekly Report <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <!-- Replace links with your week 1-10 report image paths -->
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+1', this)">Week 1</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+2', this)">Week 2</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+3', this)">Week 3</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+4', this)">Week 4</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+5', this)">Week 5</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+6', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+7', this)">Week 7</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+8', this)">Week 8</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+9', this)">Week 9</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+10', this)">Week 10</div>
+                    </div>
+                </div>
+
             </div>
             <div class="viewer-panel">
-                <img id="view-during" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Weekly+Docu" alt="Document Viewer">
+                <img id="view-during" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+1" alt="Document Viewer">
             </div>
         </div>
     </section>
@@ -291,15 +405,25 @@
 
     <!-- JavaScript -->
     <script>
+        // Accordion Toggle Logic
+        function toggleAccordion(toggleElement) {
+            // Toggle the arrow direction
+            toggleElement.classList.toggle('open');
+            // Toggle the visibility of the sub-menu right below it
+            const content = toggleElement.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
         // Document Swapping Logic
         function swapDoc(viewerId, newImgSrc, clickedLabel) {
             // Update the display picture
             document.getElementById(viewerId).src = newImgSrc;
             
-            // Manage active styles within this specific menu panel
-            const siblingLabels = clickedLabel.parentElement.querySelectorAll('.doc-label');
-            siblingLabels.forEach(label => label.classList.remove('active'));
+            // Manage active styles within this specific menu panel (works for both standard and accordion menus)
+            const menu = clickedLabel.closest('.label-menu');
+            const allLabels = menu.querySelectorAll('.doc-label, .sub-label');
             
+            allLabels.forEach(label => label.classList.remove('active'));
             clickedLabel.classList.add('active');
         }
 
