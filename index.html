@@ -12,9 +12,9 @@
             --light-bg: #F4F7F6;
             --text-dark: #333333;
             --white: #FFFFFF;
+            --gray-border: #E2E8F0;
         }
 
-        /* Base & Smooth Scrolling */
         html {
             scroll-behavior: smooth; 
         }
@@ -45,14 +45,15 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         nav ul li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             transition: color 0.3s ease;
         }
@@ -64,28 +65,36 @@
         /* Sections */
         section {
             min-height: 100vh;
-            padding: 100px 10% 50px 10%; 
+            padding: 100px 8% 60px 8%; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
         }
 
         section:nth-child(even) { background-color: var(--white); }
         section:nth-child(odd) { background-color: var(--light-bg); }
 
-        h1, h2 {
+        h2 {
             color: var(--mec-blue);
             margin-bottom: 20px;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             border-bottom: 3px solid var(--mec-orange);
             padding-bottom: 10px;
+            align-self: flex-start;
+            width: 100%;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        p {
-            max-width: 800px;
-            text-align: justify;
+        p.section-desc {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto 25px auto;
             font-size: 1.1rem;
+            color: #555;
         }
 
         /* Profile & Company Cards */
@@ -99,77 +108,85 @@
             border-top: 5px solid var(--mec-orange);
         }
 
-        /* --- Interactive Photo Gallery Styles --- */
-        .gallery-container {
+        /* --- Dashboard Layout --- */
+        .dashboard {
+            display: flex;
+            gap: 30px;
             width: 100%;
-            max-width: 900px;
-            margin-top: 20px;
-            background: var(--white);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            max-width: 1100px;
+            height: 600px;
+            margin: 0 auto;
         }
 
-        .main-image-wrapper {
-            width: 100%;
-            height: 450px;
-            margin-bottom: 15px;
+        /* Left Side: Labels Menu */
+        .label-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            padding-right: 10px;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--mec-blue);
+        }
+
+        .doc-label {
+            background-color: var(--light-bg);
+            color: var(--mec-blue);
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            border: 1px solid var(--gray-border);
+            text-align: left;
+        }
+
+        .doc-label:hover {
+            background-color: #E2E8F0;
+            padding-left: 20px;
+        }
+
+        .doc-label.active {
+            background-color: var(--mec-orange);
+            color: var(--white);
+            border-color: var(--mec-orange);
+            box-shadow: 0 4px 10px rgba(242, 101, 34, 0.3);
+        }
+
+        /* Right Side: Document Viewer */
+        .viewer-panel {
+            flex: 2.5;
             background-color: #E2E8F0;
             border-radius: 8px;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
         }
 
-        .main-image-wrapper img {
+        .viewer-panel img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the image fills the box without distorting */
+            object-fit: contain; /* Prevents stretching, maintains document aspect ratio */
+            background-color: #555;
             transition: opacity 0.3s ease;
-        }
-
-        .thumbnail-row {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .thumb {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-            opacity: 0.6;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .thumb:hover {
-            opacity: 0.9;
-        }
-
-        .thumb.active {
-            opacity: 1;
-            border-color: var(--mec-orange);
-            transform: scale(1.05);
         }
 
         /* Scroll Animations */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Footer */
         footer {
             background-color: var(--mec-blue);
             color: var(--white);
@@ -188,6 +205,7 @@
             <li><a href="#before-ojt">Before OJT</a></li>
             <li><a href="#during-ojt">During OJT</a></li>
             <li><a href="#after-ojt">After OJT</a></li>
+            <li><a href="#others">Others</a></li>
         </ul>
     </nav>
 
@@ -213,17 +231,26 @@
     <!-- 3. Before OJT -->
     <section id="before-ojt">
         <h2 class="animate-on-scroll">Before OJT</h2>
-        <p class="animate-on-scroll">Preparatory papers and requirements submitted prior to training.</p>
+        <p class="section-desc animate-on-scroll">Select a document label from the list below to view the corresponding file submission.</p>
         
-        <div class="gallery-container animate-on-scroll">
-            <div class="main-image-wrapper">
-                <img id="main-img-before" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=Before+OJT+Document+1" alt="Before OJT Document">
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                <!-- Replace 'src' values with your image names (e.g., 'images/cover_page.jpg') -->
+                <div class="doc-label active" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Cover+Page', this)">Cover Page</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Approval+Sheet', this)">Approval Sheet</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Company+Profile', this)">Company Profile</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Memorandum+of+Agreement', this)">Memorandum of Agreement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Letter+of+Intent', this)">Letter of Intent</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Letter+of+Endorsement', this)">Letter of Endorsement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Student+Waiver', this)">Student Waiver</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Internship+Agreement', this)">Internship Agreement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Consent+Form', this)">Consent Form</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=CV', this)">CV</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Insurance', this)">Insurance</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Medical+Certificate', this)">Medical Certificate</div>
             </div>
-            <div class="thumbnail-row">
-                <!-- Replace the src links below with your actual image file names (e.g. src="doc1.jpg") -->
-                <img class="thumb active" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=Before+OJT+Document+1" onclick="swapImage('main-img-before', this.src, this)">
-                <img class="thumb" src="https://via.placeholder.com/900x450/F26522/FFFFFF?text=Before+OJT+Document+2" onclick="swapImage('main-img-before', this.src, this)">
-                <img class="thumb" src="https://via.placeholder.com/900x450/333333/FFFFFF?text=Before+OJT+Document+3" onclick="swapImage('main-img-before', this.src, this)">
+            <div class="viewer-panel">
+                <img id="view-before" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Cover+Page" alt="Document Viewer">
             </div>
         </div>
     </section>
@@ -231,17 +258,15 @@
     <!-- 4. During OJT -->
     <section id="during-ojt">
         <h2 class="animate-on-scroll">During OJT</h2>
-        <p class="animate-on-scroll">Weekly reports and progressive assessments compiled during the training.</p>
+        <p class="section-desc animate-on-scroll">Select a document label to track progress documentations throughout the training period.</p>
         
-        <div class="gallery-container animate-on-scroll">
-            <div class="main-image-wrapper">
-                <img id="main-img-during" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=During+OJT+Document+1" alt="During OJT Document">
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                <div class="doc-label active" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Weekly+Docu', this)">Weekly Docu</div>
+                <div class="doc-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Weekly+Report', this)">Weekly Report</div>
             </div>
-            <div class="thumbnail-row">
-                <img class="thumb active" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=During+OJT+Document+1" onclick="swapImage('main-img-during', this.src, this)">
-                <img class="thumb" src="https://via.placeholder.com/900x450/F26522/FFFFFF?text=During+OJT+Document+2" onclick="swapImage('main-img-during', this.src, this)">
-                <img class="thumb" src="https://via.placeholder.com/900x450/333333/FFFFFF?text=During+OJT+Document+3" onclick="swapImage('main-img-during', this.src, this)">
-                <img class="thumb" src="https://via.placeholder.com/900x450/64748B/FFFFFF?text=During+OJT+Document+4" onclick="swapImage('main-img-during', this.src, this)">
+            <div class="viewer-panel">
+                <img id="view-during" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Weekly+Docu" alt="Document Viewer">
             </div>
         </div>
     </section>
@@ -249,15 +274,31 @@
     <!-- 5. After OJT -->
     <section id="after-ojt">
         <h2 class="animate-on-scroll">After OJT</h2>
-        <p class="animate-on-scroll">Final evaluations and completion certificates.</p>
+        <p class="section-desc animate-on-scroll">Select a document label to view post-internship evaluation clearance papers.</p>
         
-        <div class="gallery-container animate-on-scroll">
-            <div class="main-image-wrapper">
-                <img id="main-img-after" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=After+OJT+Document+1" alt="After OJT Document">
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                <div class="doc-label active" onclick="swapDoc('view-after', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Evaluation+for+Supervisor', this)">Evaluation for Supervisor</div>
+                <div class="doc-label" onclick="swapDoc('view-after', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Performance+Eval+Grading', this)">Performance Eval Grading</div>
             </div>
-            <div class="thumbnail-row">
-                <img class="thumb active" src="https://via.placeholder.com/900x450/0A2240/FFFFFF?text=After+OJT+Document+1" onclick="swapImage('main-img-after', this.src, this)">
-                <img class="thumb" src="https://via.placeholder.com/900x450/F26522/FFFFFF?text=After+OJT+Document+2" onclick="swapImage('main-img-after', this.src, this)">
+            <div class="viewer-panel">
+                <img id="view-after" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Evaluation+for+Supervisor" alt="Document Viewer">
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Others -->
+    <section id="others">
+        <h2 class="animate-on-scroll">Others</h2>
+        <p class="section-desc animate-on-scroll">Additional reference samples and global digital repositories.</p>
+        
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                <div class="doc-label active" onclick="swapDoc('view-others', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=CV+Sample', this)">CV Sample</div>
+                <div class="doc-label" onclick="swapDoc('view-others', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=OJT+GDrive+Screenshot', this)">OJT GDrive</div>
+            </div>
+            <div class="viewer-panel">
+                <img id="view-others" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=CV+Sample" alt="Document Viewer">
             </div>
         </div>
     </section>
@@ -268,25 +309,24 @@
 
     <!-- JavaScript -->
     <script>
-        // Image Swapping Logic
-        function swapImage(mainImageId, newSrc, clickedThumbnail) {
-            // Update the main image source
-            document.getElementById(mainImageId).src = newSrc;
+        // Document Swapping Logic
+        function swapDoc(viewerId, newImgSrc, clickedLabel) {
+            // Update the display picture
+            document.getElementById(viewerId).src = newImgSrc;
             
-            // Remove 'active' class from all thumbnails in that specific row
-            const thumbnails = clickedThumbnail.parentElement.querySelectorAll('.thumb');
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            // Manage active styles within this specific menu panel
+            const siblingLabels = clickedLabel.parentElement.querySelectorAll('.doc-label');
+            siblingLabels.forEach(label => label.classList.remove('active'));
             
-            // Add 'active' class to the clicked thumbnail
-            clickedThumbnail.classList.add('active');
+            clickedLabel.classList.add('active');
         }
 
-        // Scroll Animations Logic
+        // Scroll Intersection Animation Setup
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 
+                threshold: 0.1
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
