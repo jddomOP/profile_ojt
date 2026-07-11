@@ -194,14 +194,14 @@
         }
 
         .accordion-toggle.open span {
-            transform: rotate(180deg); /* Flips the arrow */
+            transform: rotate(180deg); 
         }
 
         .accordion-content {
             display: none;
             flex-direction: column;
             gap: 5px;
-            padding-left: 15px; /* Indents the sub-tabs */
+            padding-left: 15px; 
             margin-bottom: 10px;
         }
 
@@ -232,7 +232,7 @@
             border-color: var(--mec-orange);
         }
 
-        /* Right Side: Document Viewer */
+        /* Right Side: PDF Viewer */
         .viewer-panel {
             flex: 2.5;
             background-color: #E2E8F0;
@@ -242,12 +242,11 @@
             position: relative;
         }
 
-        .viewer-panel img {
+        .viewer-panel iframe {
             width: 100%;
             height: 100%;
-            object-fit: contain; 
-            background-color: #555;
-            transition: opacity 0.3s ease;
+            border: none;
+            background-color: var(--white);
         }
 
         /* Scroll Animations */
@@ -308,21 +307,22 @@
         
         <div class="dashboard animate-on-scroll">
             <div class="label-menu">
-                <div class="doc-label active" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Cover+Page', this)">Cover Page</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Approval+Sheet', this)">Approval Sheet</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Company+Profile', this)">Company Profile</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Memorandum+of+Agreement', this)">Memorandum of Agreement</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Letter+of+Intent', this)">Letter of Intent</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Letter+of+Endorsement', this)">Letter of Endorsement</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Student+Waiver', this)">Student Waiver</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Internship+Agreement', this)">Internship Agreement</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Consent+Form', this)">Consent Form</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=CV', this)">CV</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Insurance', this)">Insurance</div>
-                <div class="doc-label" onclick="swapDoc('view-before', 'https://via.placeholder.com/800x1100/333333/FFFFFF?text=Medical+Certificate', this)">Medical Certificate</div>
+                <!-- Update the paths inside documents/ to match your exact PDF file names -->
+                <div class="doc-label active" onclick="swapDoc('view-before', 'documents/cover_page.pdf', this)">Cover Page</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/approval_sheet.pdf', this)">Approval Sheet</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/company_profile.pdf', this)">Company Profile</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/moa.pdf', this)">Memorandum of Agreement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/letter_of_intent.pdf', this)">Letter of Intent</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/letter_of_endorsement.pdf', this)">Letter of Endorsement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/student_waiver.pdf', this)">Student Waiver</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/internship_agreement.pdf', this)">Internship Agreement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/consent_form.pdf', this)">Consent Form</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/cv.pdf', this)">CV</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/insurance.pdf', this)">Insurance</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/medical_certificate.pdf', this)">Medical Certificate</div>
             </div>
             <div class="viewer-panel">
-                <img id="view-before" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Cover+Page" alt="Document Viewer">
+                <iframe id="view-before" src="documents/cover_page.pdf" title="Document Viewer"></iframe>
             </div>
         </div>
     </section>
@@ -337,22 +337,21 @@
                 
                 <!-- Weekly Docu Accordion -->
                 <div class="accordion-group">
-                    <!-- Added 'open' class by default so the user sees the weeks immediately -->
                     <div class="doc-label accordion-toggle open" onclick="toggleAccordion(this)">
                         Weekly Docu <span>▼</span>
                     </div>
                     <div class="accordion-content open">
-                        <!-- Replace links with your week 1-10 docu image paths -->
-                        <div class="sub-label active" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+1', this)">Week 1</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+2', this)">Week 2</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+3', this)">Week 3</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+4', this)">Week 4</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+5', this)">Week 5</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+6', this)">Week 6</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+7', this)">Week 7</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+8', this)">Week 8</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+9', this)">Week 9</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+10', this)">Week 10</div>
+                        <!-- Update these to your real PDF paths -->
+                        <div class="sub-label active" onclick="swapDoc('view-during', 'documents/docu_week_1.pdf', this)">Week 1</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_2.pdf', this)">Week 2</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_3.pdf', this)">Week 3</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_4.pdf', this)">Week 4</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_5.pdf', this)">Week 5</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_6.pdf', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_7.pdf', this)">Week 7</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_8.pdf', this)">Week 8</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_9.pdf', this)">Week 9</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/docu_week_10.pdf', this)">Week 10</div>
                     </div>
                 </div>
 
@@ -362,23 +361,23 @@
                         Weekly Report <span>▼</span>
                     </div>
                     <div class="accordion-content">
-                        <!-- Replace links with your week 1-10 report image paths -->
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+1', this)">Week 1</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+2', this)">Week 2</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+3', this)">Week 3</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+4', this)">Week 4</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+5', this)">Week 5</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+6', this)">Week 6</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+7', this)">Week 7</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+8', this)">Week 8</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+9', this)">Week 9</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Report+Week+10', this)">Week 10</div>
+                        <!-- Update these to your real PDF paths -->
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_1.pdf', this)">Week 1</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_2.pdf', this)">Week 2</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_3.pdf', this)">Week 3</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_4.pdf', this)">Week 4</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_5.pdf', this)">Week 5</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_6.pdf', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_7.pdf', this)">Week 7</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_8.pdf', this)">Week 8</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_9.pdf', this)">Week 9</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/report_week_10.pdf', this)">Week 10</div>
                     </div>
                 </div>
 
             </div>
             <div class="viewer-panel">
-                <img id="view-during" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Docu+Week+1" alt="Document Viewer">
+                <iframe id="view-during" src="documents/docu_week_1.pdf" title="Document Viewer"></iframe>
             </div>
         </div>
     </section>
@@ -390,11 +389,12 @@
         
         <div class="dashboard animate-on-scroll">
             <div class="label-menu">
-                <div class="doc-label active" onclick="swapDoc('view-after', 'https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Evaluation+for+Supervisor', this)">Evaluation for Supervisor</div>
-                <div class="doc-label" onclick="swapDoc('view-after', 'https://via.placeholder.com/800x1100/F26522/FFFFFF?text=Performance+Eval+Grading', this)">Performance Eval Grading</div>
+                <!-- Update these to your real PDF paths -->
+                <div class="doc-label active" onclick="swapDoc('view-after', 'documents/eval_supervisor.pdf', this)">Evaluation for Supervisor</div>
+                <div class="doc-label" onclick="swapDoc('view-after', 'documents/performance_eval.pdf', this)">Performance Eval Grading</div>
             </div>
             <div class="viewer-panel">
-                <img id="view-after" src="https://via.placeholder.com/800x1100/0A2240/FFFFFF?text=Evaluation+for+Supervisor" alt="Document Viewer">
+                <iframe id="view-after" src="documents/eval_supervisor.pdf" title="Document Viewer"></iframe>
             </div>
         </div>
     </section>
@@ -407,19 +407,17 @@
     <script>
         // Accordion Toggle Logic
         function toggleAccordion(toggleElement) {
-            // Toggle the arrow direction
             toggleElement.classList.toggle('open');
-            // Toggle the visibility of the sub-menu right below it
             const content = toggleElement.nextElementSibling;
             content.classList.toggle('open');
         }
 
-        // Document Swapping Logic
-        function swapDoc(viewerId, newImgSrc, clickedLabel) {
-            // Update the display picture
-            document.getElementById(viewerId).src = newImgSrc;
+        // Document Swapping Logic for iFrames
+        function swapDoc(viewerId, newDocSrc, clickedLabel) {
+            // Update the iframe source
+            document.getElementById(viewerId).src = newDocSrc;
             
-            // Manage active styles within this specific menu panel (works for both standard and accordion menus)
+            // Manage active styles within this specific menu panel
             const menu = clickedLabel.closest('.label-menu');
             const allLabels = menu.querySelectorAll('.doc-label, .sub-label');
             
