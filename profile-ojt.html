@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJT Progression Portfolio</title>
+    <style>
+        /* CSS Variables for MEC Networks Theme */
+        :root {
+            --mec-blue: #0A2240; 
+            --mec-orange: #F26522; 
+            --light-bg: #F4F7F6;
+            --text-dark: #333333;
+            --white: #FFFFFF;
+            --gray-border: #E2E8F0;
+            
+            /* Dynamic variables for the scroll-fade effect */
+            --profile-bg-opacity: 1;
+            --company-bg-opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth; 
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--mec-blue);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--mec-orange);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 8% 60px 8%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            position: relative; 
+            z-index: 1;
+        }
+
+        section:nth-child(even) { background-color: var(--white); }
+        section:nth-child(odd) { background-color: var(--light-bg); }
+
+        /* --- Fullscreen Wallpapers with Fade Opacity --- */
+        #profile::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('photos/puppylon.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -1; 
+            opacity: var(--profile-bg-opacity);
+            transition: opacity 0.1s ease-out;
+        }
+
+        #company::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('photos/mec logo.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -1; 
+            opacity: var(--company-bg-opacity);
+            transition: opacity 0.1s ease-out;
+        }
+
+        h2 {
+            color: var(--mec-blue);
+            margin-bottom: 20px;
+            font-size: 2.3rem;
+            border-bottom: 3px solid var(--mec-orange);
+            padding-bottom: 10px;
+            align-self: flex-start;
+            width: 100%;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        p.section-desc {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto 25px auto;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Profile & Company Cards with Glassmorphism (Transparent Blur) */
+        .content-card {
+            background: rgba(255, 255, 255, 0.90); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 800px;
+            width: 100%;
+            border-top: 5px solid var(--mec-orange);
+        }
+
+        /* --- Dashboard Layout --- */
+        .dashboard {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            height: 600px; 
+            margin: 0 auto;
+        }
+
+        /* Left Side: Labels Menu */
+        .label-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto; 
+            padding-right: 10px;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--mec-blue);
+        }
+
+        /* Custom Scrollbar for the menu */
+        .label-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+        .label-menu::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
+        }
+        .label-menu::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .label-menu::-webkit-scrollbar-thumb:hover {
+            background: var(--mec-blue); 
+        }
+
+        .doc-label {
+            background-color: var(--light-bg);
+            color: var(--mec-blue);
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            border: 1px solid var(--gray-border);
+            text-align: left;
+            user-select: none;
+        }
+
+        .doc-label:hover {
+            background-color: #E2E8F0;
+            padding-left: 20px;
+        }
+
+        .doc-label.active {
+            background-color: var(--mec-orange);
+            color: var(--white);
+            border-color: var(--mec-orange);
+            box-shadow: 0 4px 10px rgba(242, 101, 34, 0.3);
+        }
+
+        /* --- Accordion (Sub-tabs) Styles --- */
+        .accordion-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .accordion-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-toggle span {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-toggle.open span {
+            transform: rotate(180deg); 
+        }
+
+        .accordion-content {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding-left: 15px; 
+            margin-bottom: 10px;
+        }
+
+        .accordion-content.open {
+            display: flex;
+        }
+
+        .sub-label {
+            background-color: #f8fafc;
+            color: var(--mec-blue);
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid var(--gray-border);
+        }
+
+        .sub-label:hover {
+            background-color: #E2E8F0;
+            padding-left: 20px;
+        }
+
+        .sub-label.active {
+            background-color: var(--mec-orange);
+            color: var(--white);
+            border-color: var(--mec-orange);
+        }
+
+        /* Right Side: PDF Viewer */
+        .viewer-panel {
+            flex: 2.5;
+            background-color: #E2E8F0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .viewer-panel iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: var(--white);
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            background-color: var(--mec-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#profile">My Profile</a></li>
+            <li><a href="#company">Company</a></li>
+            <li><a href="#before-ojt">Before OJT</a></li>
+            <li><a href="#during-ojt">During OJT</a></li>
+            <li><a href="#after-ojt">After OJT</a></li>
+        </ul>
+    </nav>
+
+    <!-- 1. My Profile -->
+    <section id="profile">
+        <div class="content-card animate-on-scroll">
+            <h2>My Profile</h2>
+            <p><strong>Name:</strong> Jaydie</p>
+            <p><strong>Degree:</strong> Computer Engineering (CpE)</p>
+            <p><strong>University:</strong> Polytechnic University of the Philippines (PUP)</p>
+            <p><strong>Summary:</strong> Hello, I'm Jaydie. I am a dedicated and detail-oriented Computer Engineering student at the Polytechnic University of the Philippines (PUP), seeking to leverage my academic background and hands-on technical experience in a dynamic On-the-Job Training (OJT) environment. I am deeply passionate about bridging the gap between hardware engineering and software integration, constantly looking for ways to optimize systems and solve complex problems.</p>
+        </div>
+    </section>
+
+    <!-- 2. Company -->
+    <section id="company">
+        <div class="content-card animate-on-scroll">
+            <h2>MEC Networks Corporation</h2>
+            
+            <ul style="line-height: 1.8; font-size: 1.1rem; color: var(--text-dark);">
+                <li style="margin-bottom: 15px;"><strong>Company Overview</strong>
+                    <ul>
+                        <li>Premier Information and Communications Technology (ICT) distributor and solutions provider in the Philippines.</li>
+                        <li>Founded in 1995, operating for over 30 years.</li>
+                        <li>Plays a significant role in developing the country's ICT infrastructure by distributing global technology brands to the local market.</li>
+                    </ul>
+                </li>
+                
+                <li style="margin-bottom: 15px;"><strong>Locations & Leadership</strong>
+                    <ul>
+                        <li>Headquartered at the MEC Centre in Quezon City, National Capital Region.</li>
+                        <li>Maintains a major branch in Cebu City to serve the Visayas region.</li>
+                        <li>Currently led by its President, Merrick Chua.</li>
+                    </ul>
+                </li>
+                
+                <li style="margin-bottom: 15px;"><strong>Core Business & Products</strong>
+                    <ul>
+                        <li>Functions primarily as a value-added distributor and B2B technology partner, bridging the gap between global tech manufacturers and local enterprises.</li>
+                        <li>Offers end-to-end digital and infrastructure solutions across several categories:
+                            <ul>
+                                <li><strong>Networking & Connectivity:</strong> Cabling, switching, routing, and wireless infrastructure.</li>
+                                <li><strong>Cybersecurity & Surveillance:</strong> Enterprise security systems, threat assessment, and physical surveillance solutions.</li>
+                                <li><strong>Communications:</strong> Unified communications and telephony systems tailored for modern digital workplaces.</li>
+                                <li><strong>Data & Infrastructure:</strong> Application, storage, cloud computing, big data solutions, and power management.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 3. Before OJT -->
+    <section id="before-ojt">
+        <h2 class="animate-on-scroll">Before OJT</h2>
+        <p class="section-desc animate-on-scroll">Select a document label from the list below to view the corresponding file submission.</p>
+        
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                <div class="doc-label active" onclick="swapDoc('view-before', 'documents/before/cover_page.pdf', this)">Cover Page</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/approval_sheet.pdf', this)">Approval Sheet</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/company_profile.pdf', this)">Company Profile</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/PUP_MEC MOA.pdf', this)">Memorandum of Agreement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/letter_of_intent.pdf', this)">Letter of Intent</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/letter_of_endorsement.pdf', this)">Letter of Endorsement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/student_waiver.pdf', this)">Student Waiver</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/internship_agreement.pdf', this)">Internship Agreement</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/consent_form.pdf', this)">Consent Form</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/cv.pdf', this)">CV</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/insurance.pdf', this)">Insurance</div>
+                <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/medical_certificate.pdf', this)">Medical Certificate</div>
+            </div>
+            <div class="viewer-panel">
+                <iframe id="view-before" src="documents/cover_page.pdf" title="Document Viewer"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. During OJT -->
+    <section id="during-ojt">
+        <h2 class="animate-on-scroll">During OJT</h2>
+        <p class="section-desc animate-on-scroll">Select a folder to expand and view the weekly progress documentation and reports.</p>
+        
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                
+                <!-- Weekly Docu Accordion -->
+                <div class="accordion-group">
+                    <div class="doc-label accordion-toggle open" onclick="toggleAccordion(this)">
+                        Weekly Docu <span>▼</span>
+                    </div>
+                    <div class="accordion-content open">
+                        <div class="sub-label active" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week-1-Docu.docx.pdf', this)">Week 1</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week2_docu.docx.pdf', this)">Week 2</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week3_docu.docx.pdf', this)">Week 3</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_4.pdf', this)">Week 4</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_5.pdf', this)">Week 5</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_6.pdf', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_7.pdf', this)">Week 7</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_8.pdf', this)">Week 8</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_9.pdf', this)">Week 9</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_10.pdf', this)">Week 10</div>
+                    </div>
+                </div>
+
+                <!-- Weekly Report Accordion -->
+                <div class="accordion-group">
+                    <div class="doc-label accordion-toggle" onclick="toggleAccordion(this)">
+                        Weekly Report <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week-1-Report.docx.pdf', this)">Week 1</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week2_report.docx.pdf', this)">Week 2</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week3_report.docx.pdf', this)">Week 3</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_4.pdf', this)">Week 4</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_5.pdf', this)">Week 5</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_6.pdf', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_7.pdf', this)">Week 7</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_8.pdf', this)">Week 8</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_9.pdf', this)">Week 9</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_10.pdf', this)">Week 10</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="viewer-panel">
+                <iframe id="view-during" src="documents/Week-1-Docu.docx.pdf" title="Document Viewer"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. After OJT -->
+    <section id="after-ojt">
+        <h2 class="animate-on-scroll">After OJT</h2>
+        <p class="section-desc animate-on-scroll">Select a document label to view post-internship evaluation clearance papers.</p>
+        
+        <div class="dashboard animate-on-scroll">
+            <div class="label-menu">
+                <div class="doc-label active" onclick="swapDoc('view-after', 'documents/eval_supervisor.pdf', this)">Evaluation for Supervisor</div>
+                <div class="doc-label" onclick="swapDoc('view-after', 'documents/performance_eval.pdf', this)">Performance Eval Grading</div>
+            </div>
+            <div class="viewer-panel">
+                <iframe id="view-after" src="documents/eval_supervisor.pdf" title="Document Viewer"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jaydie | OJT Progression Portfolio</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Wallpaper Fade-Out on Scroll Logic
+        window.addEventListener('scroll', function() {
+            const scrollPos = window.scrollY;
+            
+            // Fades out the Profile background as you scroll down past it
+            const profileSec = document.getElementById('profile');
+            const profileHeight = profileSec.offsetHeight;
+            let profileFade = 1 - (scrollPos / (profileHeight * 0.8)); 
+            document.documentElement.style.setProperty('--profile-bg-opacity', Math.max(0, profileFade));
+            
+            // Fades out the Company background as you scroll past it
+            const companySec = document.getElementById('company');
+            const compTop = companySec.offsetTop;
+            const compHeight = companySec.offsetHeight;
+            
+            let companyFade = 1;
+            if (scrollPos > compTop) {
+                companyFade = 1 - ((scrollPos - compTop) / (compHeight * 0.8));
+            }
+            document.documentElement.style.setProperty('--company-bg-opacity', Math.max(0, companyFade));
+        });
+
+        // Accordion Toggle Logic
+        function toggleAccordion(toggleElement) {
+            toggleElement.classList.toggle('open');
+            const content = toggleElement.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // Document Swapping Logic for iFrames
+        function swapDoc(viewerId, newDocSrc, clickedLabel) {
+            document.getElementById(viewerId).src = newDocSrc;
+            
+            const menu = clickedLabel.closest('.label-menu');
+            const allLabels = menu.querySelectorAll('.doc-label, .sub-label');
+            
+            allLabels.forEach(label => label.classList.remove('active'));
+            clickedLabel.classList.add('active');
+        }
+
+        // Content Animation Setup
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
