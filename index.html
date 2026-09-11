@@ -14,7 +14,7 @@
             --white: #FFFFFF;
             --gray-border: #E2E8F0;
             
-            /* Dynamic variables for the scroll-fade effect */
+            /* Dynamic variables for scroll-fade effect */
             --profile-bg-opacity: 1;
             --company-bg-opacity: 1;
         }
@@ -82,7 +82,7 @@
         section:nth-child(even) { background-color: var(--white); }
         section:nth-child(odd) { background-color: var(--light-bg); }
 
-        /* --- Fullscreen Wallpapers with Fade Opacity --- */
+        /* Fullscreen Wallpapers with Fade Opacity */
         #profile::before {
             content: "";
             position: absolute;
@@ -145,7 +145,7 @@
             border-top: 5px solid var(--mec-orange);
         }
 
-        /* --- Dashboard Layout --- */
+        /* Dashboard Layout */
         .dashboard {
             display: flex;
             gap: 30px;
@@ -170,7 +170,6 @@
             border-left: 4px solid var(--mec-blue);
         }
 
-        /* Custom Scrollbar for the menu */
         .label-menu::-webkit-scrollbar {
             width: 6px;
         }
@@ -212,7 +211,7 @@
             box-shadow: 0 4px 10px rgba(242, 101, 34, 0.3);
         }
 
-        /* --- Accordion Styles --- */
+        /* Accordion (Sub-tabs) */
         .accordion-group {
             display: flex;
             flex-direction: column;
@@ -324,7 +323,7 @@
             <h2>My Profile</h2>
             <p><strong>Name:</strong> John Deniel C. Domalaon</p>
             <p><strong>Degree:</strong> Computer Engineering (CpE)</p>
-            <p><strong>University:</strong> Polytechnic University of the Philippines PUP</p>
+            <p><strong>University:</strong> Polytechnic University of the Philippines (PUP)</p>
             <p><strong>Summary:</strong> Hello, I'm John Deniel C. Domalaon. I am a dedicated and detail-oriented Computer Engineering student at the Polytechnic University of the Philippines (PUP), seeking to leverage my academic background and hands-on technical experience in a dynamic On-the-Job Training (OJT) environment. I am deeply passionate about bridging the gap between hardware engineering and software integration, constantly looking for ways to optimize systems and solve complex problems.</p>
         </div>
     </section>
@@ -389,7 +388,7 @@
                 <div class="doc-label" onclick="swapDoc('view-before', 'documents/before/medical_certificate.pdf', this)">Medical Certificate</div>
             </div>
             <div class="viewer-panel">
-                <iframe id="view-before" src="documents/cover_page.pdf" title="Document Viewer"></iframe>
+                <iframe id="view-before" src="documents/before/cover_page.pdf" title="Document Viewer"></iframe>
             </div>
         </div>
     </section>
@@ -413,7 +412,7 @@
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week3_docu.docx.pdf', this)">Week 3</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week4_docu.docx.pdf', this)">Week 4</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week5_docu.docx.pdf', this)">Week 5</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week6_docu.docx.pdf', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week6_docu.pdf', this)">Week 6</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_7.pdf', this)">Week 7</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_8.pdf', this)">Week 8</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/docu_week_9.pdf', this)">Week 9</div>
@@ -432,7 +431,7 @@
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week3_report.docx.pdf', this)">Week 3</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week4_report.docx.pdf', this)">Week 4</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week5_report.docx.pdf', this)">Week 5</div>
-                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week6_report.docx.pdf', this)">Week 6</div>
+                        <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/Week6_report.pdf', this)">Week 6</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_7.pdf', this)">Week 7</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_8.pdf', this)">Week 8</div>
                         <div class="sub-label" onclick="swapDoc('view-during', 'documents/weekly-report-docus/report_week_9.pdf', this)">Week 9</div>
@@ -442,7 +441,7 @@
 
             </div>
             <div class="viewer-panel">
-                <iframe id="view-during" src="documents/Week-1-Docu.docx.pdf" title="Document Viewer"></iframe>
+                <iframe id="view-during" src="documents/weekly-report-docus/Week-1-Docu.docx.pdf" title="Document Viewer"></iframe>
             </div>
         </div>
     </section>
@@ -464,22 +463,20 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Jaydie | OJT Progression Portfolio</p>
+        <p>&copy; 2026 John Deniel C. Domalaon | OJT Progression Portfolio</p>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // Wallpaper Fade-Out on Scroll Logic
+        // Wallpaper Fade-Out on Scroll
         window.addEventListener('scroll', function() {
             const scrollPos = window.scrollY;
             
-            // Fades out the Profile background as you scroll down past it
             const profileSec = document.getElementById('profile');
             const profileHeight = profileSec.offsetHeight;
             let profileFade = 1 - (scrollPos / (profileHeight * 0.8)); 
             document.documentElement.style.setProperty('--profile-bg-opacity', Math.max(0, profileFade));
             
-            // Fades out the Company background as you scroll past it
             const companySec = document.getElementById('company');
             const compTop = companySec.offsetTop;
             const compHeight = companySec.offsetHeight;
@@ -491,14 +488,14 @@
             document.documentElement.style.setProperty('--company-bg-opacity', Math.max(0, companyFade));
         });
 
-        // Accordion Toggle Logic
+        // Accordion Toggle
         function toggleAccordion(toggleElement) {
             toggleElement.classList.toggle('open');
             const content = toggleElement.nextElementSibling;
             content.classList.toggle('open');
         }
 
-        // Document Swapping Logic for iFrames
+        // Swap Document in iFrame
         function swapDoc(viewerId, newDocSrc, clickedLabel) {
             document.getElementById(viewerId).src = newDocSrc;
             
@@ -509,7 +506,7 @@
             clickedLabel.classList.add('active');
         }
 
-        // Content Animation Setup
+        // Scroll Entry Animations
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
